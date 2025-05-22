@@ -1,12 +1,14 @@
-﻿using Indextracker2.Application.Services;
-using Indextracker2.Domain.Repositories;
-using Indextracker2.Infrastructure.Persistence;
-using Indextracker2.Infrastructure.Repositories;
+﻿using IndexTracker.Application.Services;
+using IndexTracker.Domain.Repositories;
+using IndexTracker.Infrastructure.Persistence;
+using IndexTracker.Infrastructure.Repositories;
+using IndexTracker.Infrastructure.Services;
+using IndexTracker.Application.Background;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Indextracker2
+namespace IndexTracker
 {
     public class Program
     {
