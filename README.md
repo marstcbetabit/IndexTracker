@@ -16,22 +16,17 @@ This project is a .NET console application that prints the latest S&P 500 index 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - Internet connection (for fetching S&P 500 values)
 
-### Clone and Run
-1. Clone the repository:
-   ```powershell
-   git clone <your-repo-url>
-   cd IndexTracker
-   ```
-2. Restore dependencies and build the project:
+### Run
+1. Restore dependencies and build the project:
    ```powershell
    dotnet restore
    dotnet build
    ```
-3. Apply database migrations (creates the SQLite database and tables):
+2. Apply database migrations (creates the SQLite database and tables):
    ```powershell
    dotnet ef database update
    ```
-4. Run the application:
+3. Run the application:
    ```powershell
    dotnet run
    ```
