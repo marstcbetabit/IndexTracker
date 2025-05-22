@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Indextracker2.csproj" />
+    <ProjectReference Include="..\IndexTracker.csproj" />
   </ItemGroup>
 
 </Project>
