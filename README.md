@@ -41,7 +41,7 @@ There are currently **no unit tests** in this repository. You can add your own t
 - Application logic: `IndexTracker.Application/`
 - Domain models and interfaces: `IndexTracker.Domain/`
 - Infrastructure (data, services): `IndexTracker.Infrastructure/`
-- Database migrations: `Migrations/`
+- Database migrations: `IndexTracker.Infrastructure/Persistence/Migrations/`
 
 ---
 

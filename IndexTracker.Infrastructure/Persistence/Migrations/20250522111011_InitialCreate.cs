@@ -1,9 +1,7 @@
-﻿using System;
+// ...existing code...
 using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
-
-namespace IndexTracker.Migrations
+namespace IndexTracker.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -34,3 +32,4 @@ namespace IndexTracker.Migrations
         }
     }
 }
+// ...existing code...
