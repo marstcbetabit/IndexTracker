@@ -25,6 +25,14 @@ namespace IndexTracker
                 });
 
             var app = builder.Build();
+
+            // Ensure database and migrations are applied
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<IndexDbContext>();
+                db.Database.Migrate();
+            }
+
             await app.RunAsync();
         }
     }
