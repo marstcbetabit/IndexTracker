@@ -21,19 +21,42 @@ namespace Indextracker2.Application.Background
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            var fetchInterval = TimeSpan.FromSeconds(10);
+            var printInterval = TimeSpan.FromSeconds(2);
+            var nextFetch = DateTime.UtcNow;
             while (!stoppingToken.IsCancellationRequested)
             {
+                var now = DateTime.UtcNow;
+                if (now >= nextFetch)
+                {
+                    try
+                    {
+                        var value = await _sp500Service.GetCurrentValueAsync(stoppingToken);
+                        await _repository.AddAsync(new IndexValue { Timestamp = value.Timestamp, Value = value.Value }, stoppingToken);
+                        Console.WriteLine($"[FETCH/UPDATE] S&P 500: {value.Value} at {value.Timestamp:O}");
+                        Console.Out.Flush();
+                        _logger.LogInformation($"Fetched and updated S&P 500 value: {value.Value} at {value.Timestamp}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error fetching/updating S&P 500 value");
+                    }
+                    nextFetch = now.Add(fetchInterval);
+                }
                 try
                 {
-                    var value = await _sp500Service.GetCurrentValueAsync(stoppingToken);
-                    await _repository.AddAsync(new IndexValue { Timestamp = value.Timestamp, Value = value.Value }, stoppingToken);
-                    _logger.LogInformation($"Saved S&P 500 value: {value.Value} at {value.Timestamp}");
+                    var latest = await _repository.GetLatestAsync(stoppingToken);
+                    if (latest != null)
+                    {
+                        Console.WriteLine($"S&P 500: {latest.Value} at {latest.Timestamp:O}");
+                        Console.Out.Flush();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error saving S&P 500 value");
+                    _logger.LogError(ex, "Error printing S&P 500 value");
                 }
-                await Task.Delay(TimeSpan.FromHours(2), stoppingToken);
+                await Task.Delay(printInterval, stoppingToken);
             }
         }
     }
