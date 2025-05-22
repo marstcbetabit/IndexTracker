@@ -33,12 +33,13 @@ namespace IndexTracker.Application.Background
                     {
                         var value = await _sp500Service.GetCurrentValueAsync(stoppingToken);
                         await _repository.AddAsync(new IndexValue { Timestamp = value.Timestamp, Value = value.Value }, stoppingToken);
-                        Console.WriteLine($"[FETCH/UPDATE] S&P 500: {value.Value} at {value.Timestamp:O}");
+                        Console.WriteLine($"\n[{now:HH:mm:ss}] [HTTP] Updated S&P 500 value from Yahoo Finance: {value.Value:F2} (as of {value.Timestamp:yyyy-MM-dd HH:mm:ss})");
+                        Console.WriteLine(new string('-', 60));
                         Console.Out.Flush();
-                        _logger.LogInformation($"Fetched and updated S&P 500 value: {value.Value} at {value.Timestamp}");
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine($"[{now:HH:mm:ss}] [HTTP] Error updating S&P 500 value: {ex.Message}");
                         _logger.LogError(ex, "Error fetching/updating S&P 500 value");
                     }
                     nextFetch = now.Add(fetchInterval);
@@ -48,12 +49,17 @@ namespace IndexTracker.Application.Background
                     var latest = await _repository.GetLatestAsync(stoppingToken);
                     if (latest != null)
                     {
-                        Console.WriteLine($"S&P 500: {latest.Value} at {latest.Timestamp:O}");
+                        Console.WriteLine($"[{now:HH:mm:ss}] [DB] Latest S&P 500 value: {latest.Value:F2} (as of {latest.Timestamp:yyyy-MM-dd HH:mm:ss})");
                         Console.Out.Flush();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[{now:HH:mm:ss}] [DB] No S&P 500 value in database.");
                     }
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine($"[{now:HH:mm:ss}] [DB] Error printing S&P 500 value: {ex.Message}");
                     _logger.LogError(ex, "Error printing S&P 500 value");
                 }
                 await Task.Delay(printInterval, stoppingToken);
