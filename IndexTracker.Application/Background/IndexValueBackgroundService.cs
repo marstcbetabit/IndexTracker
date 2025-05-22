@@ -35,7 +35,6 @@ namespace IndexTracker.Application.Background
                         await _repository.AddAsync(new IndexValue { Timestamp = value.Timestamp, Value = value.Value }, stoppingToken);
                         Console.WriteLine($"\n[{now:HH:mm:ss}] [HTTP] Updated S&P 500 value from Yahoo Finance: {value.Value:F2} (as of {value.Timestamp:yyyy-MM-dd HH:mm:ss})");
                         Console.WriteLine(new string('-', 60));
-                        Console.Out.Flush();
                     }
                     catch (Exception ex)
                     {
@@ -48,14 +47,7 @@ namespace IndexTracker.Application.Background
                 {
                     var latest = await _repository.GetLatestAsync(stoppingToken);
                     if (latest != null)
-                    {
                         Console.WriteLine($"[{now:HH:mm:ss}] [DB] Latest S&P 500 value: {latest.Value:F2} (as of {latest.Timestamp:yyyy-MM-dd HH:mm:ss})");
-                        Console.Out.Flush();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"[{now:HH:mm:ss}] [DB] No S&P 500 value in database.");
-                    }
                 }
                 catch (Exception ex)
                 {
