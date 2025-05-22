@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Indextracker2.Domain.Entities;
-using Indextracker2.Domain.Repositories;
-using Indextracker2.Infrastructure.Persistence;
+using IndexTracker.Domain.Entities;
+using IndexTracker.Domain.Repositories;
+using IndexTracker.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-namespace Indextracker2.Infrastructure.Repositories
+namespace IndexTracker.Infrastructure.Repositories
 {
     public class IndexValueRepository : IIndexValueRepository
     {

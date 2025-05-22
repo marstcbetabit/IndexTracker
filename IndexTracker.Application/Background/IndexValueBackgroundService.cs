@@ -1,10 +1,10 @@
-using Indextracker2.Application.Services;
-using Indextracker2.Domain.Entities;
-using Indextracker2.Domain.Repositories;
+using IndexTracker.Application.Services;
+using IndexTracker.Domain.Entities;
+using IndexTracker.Domain.Repositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Indextracker2.Application.Background
+namespace IndexTracker.Application.Background
 {
     public class IndexValueBackgroundService : BackgroundService
     {

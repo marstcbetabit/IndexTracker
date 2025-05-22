@@ -1,6 +1,6 @@
-using Indextracker2.Domain.Entities;
+using IndexTracker.Domain.Entities;
 
-namespace Indextracker2.Domain.Repositories
+namespace IndexTracker.Domain.Repositories
 {
     public interface IIndexValueRepository
     {

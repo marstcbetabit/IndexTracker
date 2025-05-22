@@ -1,11 +1,11 @@
 using HtmlAgilityPack;
-using Indextracker2.Application.Models;
-using Indextracker2.Application.Services;
+using IndexTracker.Application.Models;
+using IndexTracker.Application.Services;
 using System.Net.Http;
 using System.Globalization;
 using System.Linq;
 
-namespace Indextracker2.Infrastructure.Services
+namespace IndexTracker.Infrastructure.Services
 {
     public class Sp500Service : ISp500Service
     {

@@ -1,7 +1,7 @@
-using Indextracker2.Domain.Entities;
+using IndexTracker.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Indextracker2.Infrastructure.Persistence
+namespace IndexTracker.Infrastructure.Persistence
 {
     public class IndexDbContext : DbContext
     {

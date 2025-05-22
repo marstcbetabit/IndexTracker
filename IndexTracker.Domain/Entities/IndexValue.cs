@@ -1,4 +1,4 @@
-namespace Indextracker2.Domain.Entities
+namespace IndexTracker.Domain.Entities
 {
     public class IndexValue
     {

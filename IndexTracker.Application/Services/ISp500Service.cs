@@ -1,6 +1,6 @@
-using Indextracker2.Application.Models;
+using IndexTracker.Application.Models;
 
-namespace Indextracker2.Application.Services
+namespace IndexTracker.Application.Services
 {
     public interface ISp500Service
     {

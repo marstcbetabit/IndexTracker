@@ -1,6 +1,6 @@
-using Indextracker2.Domain.Entities;
+using IndexTracker.Domain.Entities;
 
-namespace Indextracker2.Application.Models
+namespace IndexTracker.Application.Models
 {
     public class Sp500ValueDto
     {
